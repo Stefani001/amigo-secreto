@@ -1,0 +1,216 @@
+:root {
+    --color-primary: #605678;
+    --color-secondary: #8ABFA3;
+    --color-tertiary: #FFBF61;
+    --color-button: #FFE6A5;
+    --color-button-hover: #E5D198;
+    --color-text: #444444;
+    --color-white: #FFFFFF;
+}
+
+/* Estilos gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--color-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+/* Banner */
+.header-banner {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 40px 20% 0 20%;
+    width: 100%;
+    gap: 20px;
+}
+
+.header-banner img {
+    min-width: 50%;
+    min-height: 50%;
+    max-width: 277px;
+    max-height: 450px;
+}
+
+/* Seção de entrada */
+.input-section {
+    flex: 60%;
+    background-color: var(--color-secondary);
+    border: 1px solid #000;
+    border-radius: 64px 64px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+}
+
+/* Títulos */
+.main-title {
+    font-size: 48px;
+    font-family: "Merriweather", serif;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--color-white);
+    text-align: center;
+}
+
+.section-title {
+    font-family: "Inter", serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 10px 0;
+    text-align: center;
+}
+
+/* Contêineres de entrada e botão */
+.input-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.input-name {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 25px 0 0 25px;
+    font-size: 16px;
+}
+
+.button-container {
+    width: 100%;
+    justify-content: center;
+    max-width: 300px;
+    padding: auto;
+}
+
+/* Estilos de entrada de texto */
+.input-title {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 2px solid #333;
+    border-right: none;
+    border-radius: 25px 0 0 25px;
+    font-family: "Merriweather", serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos de botão */
+button {
+    padding: 15px 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    border: 2px solid #000;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.button-add {
+    margin-left: -2px;
+    background-color: var(--color-tertiary);
+    color: #ffffff;
+    border-radius: 0 25px 25px 0;
+}
+
+.button-add:hover {
+    background-color: #E5A750;
+}
+
+/* Listas */
+ul {
+    list-style-type: none;
+    color: var(--color-text);
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.result-list {
+    margin-top: 15px;
+    color: var(--color-button-hover);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Botão de sortear título */
+.button-draw {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 100%;
+    color: var(--color-white);
+    background-color: var(--color-button);
+    font-size: 16px;
+    gap: 5px;
+}
+
+.button-draw:hover {
+    background-color: var(--color-button-hover);
+}
+
+.button-restart {
+    display: flex;
+    max-width: 54px;
+    max-height: 54px;
+    min-height: 30%;
+    min-width: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.button-restart:hover {
+    filter: brightness(0.9);
+}
+
+.button-hidden-container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    max-width: 50%;
+    
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.hidden-button {
+    background-color:#d38755;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.hidden:hover {
+    background-color: #ad6c40;
+}
+
+#limpar-resposta{
+    background-color:#84709c;
+}
+#limpar-resposta:hover{
+    background-color: #685a7a;
+}
