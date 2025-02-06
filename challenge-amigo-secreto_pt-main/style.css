@@ -186,20 +186,19 @@ ul {
     filter: brightness(0.9);
 }
 
-.button-hidden-container{
+.button-hidden-container {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
     max-width: 50%;
-    
 }
 
-.hidden{
+.hidden {
     visibility: hidden;
 }
 
 .hidden-button {
-    background-color:#d38755;
+    background-color: #d38755;
     font-size: 14px;
     padding: 10px;
 }
@@ -208,9 +207,10 @@ ul {
     background-color: #ad6c40;
 }
 
-#limpar-resposta{
-    background-color:#84709c;
+#limpar-resposta {
+    background-color: #84709c;
 }
-#limpar-resposta:hover{
+
+#limpar-resposta:hover {
     background-color: #685a7a;
 }
