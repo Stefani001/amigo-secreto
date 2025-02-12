@@ -39,6 +39,7 @@ Efeito de confetes ao sortear
 Opção de reiniciar o sorteio
 
 Acesse por aqui o jogo!👇
+
 https://amigo-secreto-one-ochre.vercel.app/
 
 Estrutura do Projeto
