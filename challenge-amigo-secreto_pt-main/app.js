@@ -1,8 +1,37 @@
-
 let amigos = [];
-let sorteioRealizado = false;
-let toRemove = '';
-let sorteado = '';
+let sorteados = [];
+
+function adicionarAmigo() {
+    const input = document.getElementById('amigo');
+    const nomes = input.value.trim();
+
+    if (nomes === '') {
+        alert('Digite pelo menos um nome válido!');
+        return;
+    }
+    
+    const listaNomes = nomes.split(',').map(nome => nome.trim()).filter(nome => nome !== '');
+    
+    listaNomes.forEach(nome => {
+        if (!amigos.includes(nome)) {
+            amigos.push(nome);
+        }
+    });
+    
+    atualizarLista();
+    input.value = '';
+}
+
+function atualizarLista() {
+    const lista = document.getElementById('listaAmigos');
+    lista.innerHTML = '';
+
+    amigos.forEach((nome) => {
+        const li = document.createElement('li');
+        li.textContent = nome;
+        lista.appendChild(li);
+    });
+}
 
 function estourarConfete() {
     confetti({
@@ -14,20 +43,48 @@ function estourarConfete() {
 }
 
 function sortearAmigo() {
-    if (sorteioRealizado) {
-        alert('Sorteio já realizado, adicione novos amigos para sortear novamente!');
-        return;
-    }
     if (amigos.length === 0) {
-        alert('Adicione amigos para sortear!');
+        alert('Por favor, adicione ao menos dois amigos!');
+        return;
+    }
+    if (amigos.length < 2) {
+        alert('Adicione pelo menos dois amigos para sortear!');
+        return;
+    }
+    if (sorteados.length === amigos.length) {
+        alert('Todos os amigos já foram sorteados!');
         return;
     }
     
-    sorteado = amigos[Math.floor(Math.random() * amigos.length)];
+    let sorteado;
+    do {
+        sorteado = amigos[Math.floor(Math.random() * amigos.length)];
+    } while (sorteados.includes(sorteado));
     
-    document.getElementById('resultado').innerText = sorteado;
-    document.getElementById("hiden-elements").classList.remove("hidden");
+    sorteados.push(sorteado);
+    document.getElementById('resultado').innerText = `Sorteado: ${sorteado}`;
+    
+    document.getElementById('hiden-elements').classList.remove('hidden');
+    document.getElementById('auto-sorteio').classList.remove('hidden');
+    document.getElementById('limpar-resposta').classList.remove('hidden');
 
     estourarConfete();
-    sorteioRealizado = true;
+}
+
+function resortearAmigo() {
+    if (sorteados.length === amigos.length) {
+        alert('Todos os amigos já foram sorteados!');
+        return;
+    }
+    sortearAmigo();
+}
+
+function ocultarResultado() {
+    document.getElementById('resultado').innerText = '';
+    document.getElementById('hiden-elements').classList.add('hidden');
+    document.getElementById('auto-sorteio').classList.add('hidden');
+    document.getElementById('limpar-resposta').classList.add('hidden');
+    amigos = [];
+    sorteados = [];
+    atualizarLista();
 }
