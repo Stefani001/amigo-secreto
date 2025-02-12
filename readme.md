@@ -38,18 +38,18 @@ Efeito de confetes ao sortear
 
 Opção de reiniciar o sorteio
 
+Acesse por aqui o jogo!👇
+https://amigo-secreto-one-ochre.vercel.app/
+
 Estrutura do Projeto
 
 /amigo-secreto
 ├── app.js          # Lógica do sorteio e interação
 ├── index.html      # Estrutura do site
 ├── style.css       # Estilização da interface
-├── README.md       # Documentação do projeto
-├── assets/         # Imagens e ícones
+├── README.md       # Documentação do projeto        
 
 Melhorias Futuras
-
-Implementação de sorteios personalizados (com restrições)
 
 Versão responsiva aprimorada para dispositivos móveis
 
