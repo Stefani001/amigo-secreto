@@ -9,15 +9,37 @@ function adicionarAmigo() {
         alert('Digite pelo menos um nome válido!');
         return;
     }
-    
-    const listaNomes = nomes.split(',').map(nome => nome.trim()).filter(nome => nome !== '');
-    
+
+    if (/\d/.test(nomes)) {
+        alert('Por favor, insira apenas nomes (números não são permitidos)!');
+        return;
+    }
+
+    let listaNomes = nomes.split(',')
+        .map(nome => nome.trim().replace(/\s+/g, ' ').toLowerCase())
+        .filter(nome => nome !== '');
+
+    let setNomes = new Set(listaNomes);
+    if (setNomes.size !== listaNomes.length) {
+        alert('Você digitou nomes repetidos na mesma entrada! Corrija isso.');
+        return;
+    }
+
+    let nomesDuplicados = listaNomes.filter(nome =>
+        amigos.some(amigo => amigo.toLowerCase() === nome)
+    );
+
+    if (nomesDuplicados.length > 0) {
+        alert(`Os seguintes nomes já foram adicionados: ${nomesDuplicados.join(', ')}`);
+        return;
+    }
+
     listaNomes.forEach(nome => {
-        if (!amigos.includes(nome)) {
-            amigos.push(nome);
+        if (!amigos.map(a => a.toLowerCase()).includes(nome)) {
+            amigos.push(nome.charAt(0).toUpperCase() + nome.slice(1));
         }
     });
-    
+
     atualizarLista();
     input.value = '';
 }
@@ -34,57 +56,71 @@ function atualizarLista() {
 }
 
 function estourarConfete() {
-    confetti({
-        particleCount: 150, 
-        spread: 80,         
-        origin: { y: 0.6 },
-        colors: ['#ff0f0f', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0']
-    });
+    setTimeout(() => {
+        confetti({
+            particleCount: 200,
+            spread: 90,
+            origin: { y: 0.6 },
+            colors: ['#ff0f0f', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3', '#9c27b0']
+        });
+    }, 100);
 }
 
 function sortearAmigo() {
-    if (amigos.length === 0) {
-        alert('Por favor, adicione ao menos dois amigos!');
-        return;
-    }
     if (amigos.length < 2) {
         alert('Adicione pelo menos dois amigos para sortear!');
         return;
     }
+
     if (sorteados.length === amigos.length) {
-        alert('Todos os amigos já foram sorteados!');
+        alert('Todos os amigos já foram sorteados! A lista será reiniciada.');
+        reiniciarLista();
         return;
     }
-    
+
     let sorteado;
     do {
         sorteado = amigos[Math.floor(Math.random() * amigos.length)];
     } while (sorteados.includes(sorteado));
-    
+
     sorteados.push(sorteado);
     document.getElementById('resultado').innerText = `Sorteado: ${sorteado}`;
-    
+
     document.getElementById('hiden-elements').classList.remove('hidden');
     document.getElementById('auto-sorteio').classList.remove('hidden');
-    document.getElementById('limpar-resposta').classList.remove('hidden');
+    document.getElementById('novo-sorteio').classList.remove('hidden');
+
+    document.getElementById('amigo').disabled = true;
+    document.querySelector('.button-add').disabled = true;
 
     estourarConfete();
 }
 
 function resortearAmigo() {
     if (sorteados.length === amigos.length) {
-        alert('Todos os amigos já foram sorteados!');
+        alert('Todos os amigos já foram sorteados! A lista será reiniciada.');
+        reiniciarLista();
         return;
     }
+
+    sorteados.pop();
     sortearAmigo();
 }
 
-function ocultarResultado() {
-    document.getElementById('resultado').innerText = '';
-    document.getElementById('hiden-elements').classList.add('hidden');
-    document.getElementById('auto-sorteio').classList.add('hidden');
-    document.getElementById('limpar-resposta').classList.add('hidden');
+function reiniciarLista() {
     amigos = [];
     sorteados = [];
     atualizarLista();
+    document.getElementById('resultado').innerText = '';
+
+    document.getElementById('amigo').disabled = false;
+    document.querySelector('.button-add').disabled = false;
+
+    document.getElementById('hiden-elements').classList.add('hidden');
+    document.getElementById('auto-sorteio').classList.add('hidden');
+    document.getElementById('novo-sorteio').classList.add('hidden');
+}
+
+function novoSorteio() {
+    reiniciarLista();
 }
